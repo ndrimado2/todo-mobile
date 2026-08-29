@@ -1,4 +1,10 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { useState } from "react";
 
 export default function HomeScreen() {
@@ -16,6 +22,10 @@ export default function HomeScreen() {
         onChangeText={setTexte}
       />
       <Text style={styles.title1}>{texte}</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => setTexte("")}>
+        <Text style={styles.buttonText}>Vider</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -46,5 +56,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 20,
     width: "80%",
+  },
+  button: {
+    backgroundColor: "#dbeb25",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: "#000000",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
