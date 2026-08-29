@@ -4,11 +4,14 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  FlatList,
 } from "react-native";
 import { useState } from "react";
 
 export default function HomeScreen() {
   const [texte, setTexte] = useState("");
+
+  const taches = ["Réviser React Native", "Faire les courses", "Appeler maman"];
 
   return (
     <View style={styles.container}>
@@ -26,6 +29,12 @@ export default function HomeScreen() {
       <TouchableOpacity style={styles.button} onPress={() => setTexte("")}>
         <Text style={styles.buttonText}>Vider</Text>
       </TouchableOpacity>
+      <FlatList
+        style={{ backgroundColor: "lightgray", width: "100%" }}
+        data={taches}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <Text>{item}</Text>}
+      />
     </View>
   );
 }
