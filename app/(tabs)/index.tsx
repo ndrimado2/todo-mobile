@@ -7,9 +7,13 @@ import {
   FlatList,
 } from "react-native";
 import { useState } from "react";
+import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
   const [texte, setTexte] = useState("");
+
+  const router = useRouter();
 
   const taches = ["Réviser React Native", "Faire les courses", "Appeler maman"];
 
@@ -26,15 +30,26 @@ export default function HomeScreen() {
       />
       <Text style={styles.title1}>{texte}</Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => setTexte("")}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          setTexte("");
+          router.push("/explore");
+        }}
+      >
         <Text style={styles.buttonText}>Vider</Text>
       </TouchableOpacity>
+
       <FlatList
         style={{ backgroundColor: "lightgray", width: "100%" }}
         data={taches}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <Text>{item}</Text>}
       />
+
+      <Link href="/explore">
+        <Text>Aller à Explore</Text>
+      </Link>
     </View>
   );
 }
